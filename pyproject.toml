@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "poetry-compile-test"
+version = "0.1.0"
+description = ""
+authors = ["Henri de Boutray <henrideboutray@hotmail.fr>"]
+readme = "README.md"
+exclude = ["poetry_compile_test/**/*.py"]  # replace SRC with the root of your source
+include = ["poetry_compile_test/**/*.so","SRC/**/*.dll"]  # And/or Windows/Mac equivalents
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[build-system]
+requires = ["poetry-core", "setuptools", "Cython"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = false
+
+[tool.poetry.dev-dependencies]
+Cython = "^0.29.21"  # Latest version at time of publishing
+# setuptools = "^67.0.0"
