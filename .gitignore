@@ -1,2 +1,4 @@
 cython_build/
 dist/
+build/
+*.pyd
