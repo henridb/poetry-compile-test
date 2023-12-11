@@ -8,6 +8,7 @@ from setuptools import Extension, Distribution
 import setuptools.command.build_ext
 # it doesn't even works :(
 from setuptools.command.build_ext import build_ext
+from setuptools.command.build_py import build_py
 
 from Cython.Build import cythonize
 from Cython.Distutils.build_ext import new_build_ext as cython_build_ext
@@ -60,6 +61,14 @@ def cythonize_helper(extension_modules: List[Extension]) -> List[Extension]:
 
 # Collect and cythonize all files
 extension_modules = cythonize_helper(get_extension_modules())
+
+class BuildExt(build_ext):
+    def finalize_options(self):
+        super().finalize_options()
+        self.build_lib = f"{self.build_lib}.blah"
+
+    def run(self):
+        ...
 
 
 # Use Setuptools to collect files
